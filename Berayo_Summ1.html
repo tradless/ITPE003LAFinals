@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tracen Academy Enrollment Application</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f8f8fc;
+        margin: 0;
+        padding: 20px;
+        line-height: 1.5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 700px;
+        width: 100%;
+        margin: 0 auto;
+        background-color: rgba(255, 255, 255, 0.95);
+        border-radius: 1.5rem;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+        padding: 1.5rem;
+        padding-top: 10vh;
+      }
+
+      header {
+        background: linear-gradient(135deg, #58b000 0%, #72d310 100%);
+        color: white;
+        padding: 32px 24px;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      header h1 {
+        font-size: 2.25rem;
+        font-weight: 800;
+        margin: 0 0 0.5rem 0;
+        letter-spacing: 0.0125em;
+      }
+
+      header p {
+        font-size: 1.125rem;
+        font-weight: 300;
+        margin: 0;
+        opacity: 0.87;
+      }
+
+      nav {
+        background-color: #e6ffe6;
+        border-bottom: 1px solid #e0e0e0;
+        padding: 1rem;
+        border-radius: 0.75rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+      }
+
+      nav ul {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+
+      nav ul li a {
+        display: block;
+        padding: 0;
+        color: #58b000;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1rem;
+        text-transform: none;
+        letter-spacing: normal;
+        transition: color 0.3s ease-in-out;
+        position: relative;
+      }
+
+      nav ul li a:hover {
+        color: #4a9100;
+        background-color: transparent;
+      }
+
+      nav ul li a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background-color: #58b000;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateX(-50%);
+      }
+
+      nav ul li a:hover::after {
+        width: 100%;
+      }
+
+      section {
+        padding: 1.8rem;
+        border-radius: 1.25rem;
+        box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.08);
+        background-color: #ffffff;
+        border: 1px solid #e0e0e0;
+        margin-bottom: 3rem;
+      }
+
+      section:last-child {
+        border-bottom: none;
+      }
+
+      section h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin: 0 0 1.5rem 0;
+        text-align: center;
+        letter-spacing: 0.0125em;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+
+      .form-group {
+        margin-bottom: 0;
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #4a5568;
+        margin-bottom: 0.4rem;
+        text-transform: none;
+        letter-spacing: normal;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      textarea,
+      select {
+        width: 100%;
+        padding: 0.65rem 0.9rem;
+        border: 2px solid #72d310;
+        border-radius: 0.75rem;
+        background-color: #fcfcfd;
+        font-size: 0.95rem;
+        font-family: "Inter", sans-serif;
+        transition: all 0.2s ease-in-out;
+        outline: none;
+      }
+
+      input[type="text"]:focus,
+      input[type="email"]:focus,
+      textarea:focus,
+      select:focus {
+        border-color: #58b000;
+        box-shadow: 0 0 0 3px rgba(114, 211, 16, 0.3);
+      }
+
+      input[type="text"]:hover,
+      input[type="email"]:hover,
+      textarea:hover,
+      select:hover {
+        border-color: #58b000;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 80px;
+      }
+
+      .radio-checkbox-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem 1rem;
+        margin-top: 0.3rem;
+      }
+
+      .radio-checkbox-group label {
+        display: inline-flex;
+        align-items: center;
+        font-size: 0.9rem;
+        font-weight: 400;
+        color: #4a5568;
+        cursor: pointer;
+        text-transform: none;
+        letter-spacing: normal;
+        margin-bottom: 0;
+        padding: 0;
+      }
+
+      .radio-checkbox-group input[type="radio"],
+      .radio-checkbox-group input[type="checkbox"] {
+        width: 1rem;
+        height: 1rem;
+        margin-right: 0.5rem;
+        cursor: pointer;
+        position: relative;
+        appearance: none;
+        border: 2px solid #72d310;
+        background-color: transparent;
+        transition: all 0.2s ease-in-out;
+        flex-shrink: 0;
+      }
+
+      .radio-checkbox-group input[type="radio"] {
+        border-radius: 50%;
+      }
+
+      .radio-checkbox-group input[type="checkbox"] {
+        border-radius: 0.25rem;
+      }
+
+      .radio-checkbox-group input[type="radio"]:checked,
+      .radio-checkbox-group input[type="checkbox"]:checked {
+        border-color: #72d310;
+        background-color: #72d310;
+      }
+
+      .radio-checkbox-group input[type="radio"]:checked::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 50%;
+        background-color: white;
+        transform: translate(-50%, -50%);
+      }
+
+      .radio-checkbox-group input[type="checkbox"]:checked::after {
+        content: "✓";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        color: white;
+        font-size: 0.75rem;
+        font-weight: bold;
+        transform: translate(-50%, -50%);
+      }
+
+      .radio-checkbox-group input[type="radio"]:focus,
+      .radio-checkbox-group input[type="checkbox"]:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(114, 211, 16, 0.3);
+      }
+
+      .btn-gradient {
+        width: 100%;
+        padding: 0.75rem 1.5rem;
+        color: white;
+        font-weight: 700;
+        border-radius: 0.75rem;
+        transition: background-color 0.2s ease-in-out,
+          transform 0.1s ease-in-out, box-shadow 0.2s ease-in-out;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        border: none;
+        position: relative;
+        overflow: hidden;
+        background-image: linear-gradient(to right, #72d310, #58b000);
+      }
+      .btn-gradient:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        background-image: linear-gradient(to right, #58b000, #4caf50);
+      }
+      .btn-gradient:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      .btn-gradient::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 5px;
+        height: 5px;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 50%;
+        opacity: 0;
+        transform: scale(1) translate(-50%, -50%);
+        transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+      }
+      .btn-gradient:active::after {
+        transform: scale(30) translate(-50%, -50%);
+        opacity: 1;
+      }
+      .btn-gradient:focus {
+        outline: none;
+        box-shadow: 0 0 0 4px rgba(114, 211, 16, 0.5),
+          0 0 0 6px rgba(114, 211, 16, 0.2);
+      }
+
+      #messageBox {
+        margin-top: 1rem;
+        padding: 0.75rem;
+        text-align: center;
+        font-size: 0.875rem;
+        border-radius: 0.5rem;
+        display: none;
+      }
+      .message-box.error {
+        background-color: #fee2e2;
+        color: #b91c1c;
+        border-left: 4px solid #f44336;
+      }
+      .message-box.success {
+        background-color: #d1fae5;
+        color: #047857;
+        border-left: 4px solid #4caf50;
+      }
+      .message-box.info {
+        background-color: #e3f2fd;
+        color: #1565c0;
+        border-left: 4px solid #2196f3;
+      }
+
+      .table-container {
+        background-color: #f9fafb;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        overflow-x: auto;
+      }
+
+      .table-container p {
+        color: #4a5568;
+        text-align: center;
+        font-size: 1rem;
+        padding: 1rem;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.875rem;
+        margin-top: 1rem;
+        border-radius: 0.75rem;
+        overflow: hidden;
+        border: 1px solid #e2e8f0;
+      }
+
+      thead.table-header-green {
+        background-color: #58b000;
+        color: white;
+      }
+
+      th {
+        padding: 0.75rem 1.25rem;
+        text-align: left;
+        font-weight: 500;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      th:first-child {
+        border-top-left-radius: 0.75rem;
+      }
+      th:last-child {
+        border-top-right-radius: 0.75rem;
+      }
+
+      tbody#dataRows {
+        background-color: white;
+      }
+
+      tbody#dataRows tr:nth-child(even) {
+        background-color: #f7fafc;
+      }
+
+      td {
+        padding: 0.75rem 1.25rem;
+        white-space: nowrap;
+        font-size: 0.875rem;
+        color: #1a202c;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      tbody#dataRows tr:last-child td {
+        border-bottom: none;
+      }
+
+      tbody tr:hover {
+        background-color: rgba(114, 211, 16, 0.08);
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 10px;
+        }
+        .container {
+          margin: 10px;
+          padding: 1rem;
+          padding-top: 5vh;
+          border-radius: 1rem;
+        }
+        header {
+          padding: 24px 16px;
+        }
+        header h1 {
+          font-size: 2rem;
+        }
+        section {
+          padding: 1.5rem;
+        }
+        nav ul {
+          gap: 1rem;
+        }
+        nav ul li a {
+          font-size: 0.9rem;
+        }
+        .radio-checkbox-group {
+          flex-direction: column;
+          gap: 0.6rem;
+        }
+        table {
+          font-size: 0.75rem;
+        }
+        th,
+        td {
+          padding: 0.6rem 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Welcome to Tracen Academy!</h1>
+        <p>"Eclipse first, the rest nowhere."</p>
+      </header>
+
+      <nav>
+        <ul>
+          <li>
+            <a href="#enrollment-form">Enrollment Form</a>
+          </li>
+          <li>
+            <a href="#student-roster">Student Roster</a>
+          </li>
+          <li>
+            <a href="https://umamusume.jp/" target="_blank">Official Site</a>
+          </li>
+        </ul>
+      </nav>
+
+      <section id="enrollment-form">
+        <h2>Enroll Your Uma Musume</h2>
+        <form id="myForm">
+          <div class="form-group">
+            <label for="umaMusumeName">Uma Musume Name:</label>
+            <input
+              type="text"
+              id="umaMusumeName"
+              name="umaMusumeName"
+              placeholder="Special Week"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="trainerEmail">Trainer Contact Email:</label>
+            <input
+              type="email"
+              id="trainerEmail"
+              name="trainerEmail"
+              placeholder="trainer@example.com"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="aspiration">Aspiration/Goal for Tracen Academy:</label>
+            <textarea
+              id="aspiration"
+              name="aspiration"
+              rows="3"
+              placeholder="To become the best in the world!"
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Preferred Track:</label>
+            <div class="radio-checkbox-group">
+              <label>
+                <input type="radio" name="preferredTrack" value="Turf" />
+                <span>Turf</span>
+              </label>
+              <label>
+                <input type="radio" name="preferredTrack" value="Dirt" />
+                <span>Dirt</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="preferredDistance">Preferred Distance:</label>
+            <select id="preferredDistance" name="preferredDistance" required>
+              <option value="">-- Select Program --</option>
+              <option value="Sprint">Sprint</option>
+              <option value="Mile">Mile</option>
+              <option value="Medium">Medium</option>
+              <option value="Long">Long</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Preferred Style:</label>
+            <div class="radio-checkbox-group">
+              <label>
+                <input
+                  type="radio"
+                  name="preferredStyle"
+                  value="Front Runner"
+                />
+                <span>Front Runner</span>
+              </label>
+              <label>
+                <input type="radio" name="preferredStyle" value="Pace Chaser" />
+                <span>Pace Chaser</span>
+              </label>
+              <label>
+                <input type="radio" name="preferredStyle" value="Late Surger" />
+                <span>Late Surger</span>
+              </label>
+              <label>
+                <input type="radio" name="preferredStyle" value="End Closer" />
+                <span>End Closer</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Specialty Traits (Select all that apply):</label>
+            <div class="radio-checkbox-group">
+              <label>
+                <input type="checkbox" name="specialtyTraits" value="Speed" />
+                <span>Speed</span>
+              </label>
+              <label>
+                <input type="checkbox" name="specialtyTraits" value="Stamina" />
+                <span>Stamina</span>
+              </label>
+              <label>
+                <input type="checkbox" name="specialtyTraits" value="Power" />
+                <span>Power</span>
+              </label>
+              <label>
+                <input type="checkbox" name="specialtyTraits" value="Guts" />
+                <span>Guts</span>
+              </label>
+              <label>
+                <input type="checkbox" name="specialtyTraits" value="Wit" />
+                <span>Wit</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn-gradient">
+              Submit Enrollment
+            </button>
+          </div>
+        </form>
+        <div id="messageBox" class="message-box"></div>
+      </section>
+
+      <section id="student-roster">
+        <h2>Tracen Academy Student Roster</h2>
+        <div class="table-container">
+          <div id="dataListings">
+            <p>Loading student data from Tracen Academy records...</p>
+            <table>
+              <thead class="table-header-green">
+                <tr>
+                  <th>Enrollment Date</th>
+                  <th>Uma Musume Name</th>
+                  <th>Trainer Email</th>
+                  <th>Preferred Distance</th>
+                  <th>Preferred Style</th>
+                  <th>Specialty Traits</th>
+                </tr>
+              </thead>
+              <tbody id="dataRows"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      function showMessageBox(message, type = "info") {
+        const messageBox = document.getElementById("messageBox");
+        messageBox.textContent = message;
+        messageBox.className = `message-box ${type}`;
+        messageBox.style.display = "block";
+        setTimeout(() => {
+          messageBox.style.display = "none";
+        }, 5000);
+      }
+
+      // Fetch and display data from the Google Apps Script endpoint
+      async function fetchAndDisplayData() {
+        const dataListingsDiv = document.getElementById("dataListings");
+        const dataRowsBody = document.getElementById("dataRows");
+        const loadingParagraph = dataListingsDiv.querySelector("p");
+
+        if (loadingParagraph) {
+          loadingParagraph.textContent =
+            "Loading student data from Tracen Academy records...";
+          loadingParagraph.style.display = "block";
+        }
+        dataRowsBody.innerHTML = "";
+
+        try {
+          // Set a timeout for fetch (10 seconds)
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+          const response = await fetch(
+            "https://script.google.com/macros/s/AKfycbzXZzh6fbk91iNKWMfZWQMIB68cqaHRHHCUjpk4eDsDomTy4cLx1J5JvNfuOGQzNYm7Fw/exec",
+            { method: "GET", signal: controller.signal }
+          );
+          clearTimeout(timeoutId);
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          let data;
+          try {
+            data = await response.json();
+          } catch (jsonError) {
+            throw new Error("Invalid JSON response from server.");
+          }
+
+          if (loadingParagraph) loadingParagraph.style.display = "none";
+
+          if (!Array.isArray(data) || data.length === 0) {
+            dataRowsBody.innerHTML =
+              '<tr><td colspan="6" style="text-align: center;">No student data available.</td></tr>';
+          } else {
+            data.forEach((rowData) => {
+              const row = document.createElement("tr");
+              row.innerHTML = `
+                <td>${
+                  rowData.date ? new Date(rowData.date).toLocaleString() : "-"
+                }</td>
+                <td>${rowData.umaMusumeName || "-"}</td>
+                <td>${rowData.trainerEmail || "-"}</td>
+                <td>${rowData.preferredDistance || "-"}</td>
+                <td>${rowData.preferredStyle || "-"}</td>
+                <td>${rowData.specialtyTraits || "-"}</td>
+              `;
+              dataRowsBody.appendChild(row);
+            });
+          }
+        } catch (error) {
+          console.error("Error fetching data:", error);
+          if (loadingParagraph) {
+            loadingParagraph.textContent =
+              "Failed to load student data. " +
+              (error.name === "AbortError"
+                ? "Request timed out. Please try again."
+                : error.message || "Please try again.");
+            loadingParagraph.style.display = "block";
+          }
+          dataRowsBody.innerHTML =
+            '<tr><td colspan="6" style="text-align: center; color: #c62828;">Error loading data.</td></tr>';
+        }
+      }
+
+      window.addEventListener("load", fetchAndDisplayData);
+
+      // Form submission handle to app script
+      document
+        .getElementById("myForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const form = e.target;
+          const formData = new FormData(form);
+
+          fetch(
+            "https://script.google.com/macros/s/AKfycbzXZzh6fbk91iNKWMfZWQMIB68cqaHRHHCUjpk4eDsDomTy4cLx1J5JvNfuOGQzNYm7Fw/exec",
+            {
+              method: "POST",
+              body: formData,
+            }
+          )
+            .then((response) => {
+              if (response.ok) {
+                showMessageBox("Enrollment submitted successfully!", "success");
+                form.reset();
+                fetchAndDisplayData();
+              } else {
+                showMessageBox("Submission failed. Please try again.", "error");
+              }
+            })
+            .catch(() => {
+              showMessageBox(
+                "Submission failed. Please check your connection and try again.",
+                "error"
+              );
+            });
+        });
+    </script>
+  </body>
+</html>
